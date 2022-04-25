@@ -12,11 +12,7 @@
 */
 
 Route::get('/', 'PostController@index');
-<<<<<<< HEAD
 Route::get('/posts/create', 'PostController@create');
 Route::get('/posts/{post}', 'PostController@show');
 
 Route::post('/posts', 'PostController@store');
-=======
-Route::get('/posts/{post}', 'PostController@show');
->>>>>>> refs/remotes/origin/master

@@ -26,7 +26,6 @@ class PostController extends Controller
    {
     return view('posts/show')->with(['post' => $post]);
    }
-<<<<<<< HEAD
    
    public function create()
    {
@@ -39,6 +38,4 @@ class PostController extends Controller
     $post->fill($input)->save();
     return redirect('/posts/' . $post->id);
    }
-=======
->>>>>>> refs/remotes/origin/master
 }
