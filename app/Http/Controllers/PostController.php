@@ -14,13 +14,7 @@ class PostController extends Controller
    
   /**
  * 特定IDのpostを表示する
-<<<<<<< HEAD
  *引数の$postはid=1のPostインスタンス
-=======
- *
- * @params Object Post // 引数の$postはid=1のPostインスタンス
- * @return Reposnse post view
->>>>>>> refs/remotes/origin/master
  */
    public function show(Post $post)
    {
