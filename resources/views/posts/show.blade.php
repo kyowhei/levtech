@@ -9,9 +9,14 @@
         <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
-        <h1 class="title">
-            {{ $post->title }}
-        </h1>
+        <h1>Blog Name</h1>
+        <div class="create">
+            <p class="edit">[<a href="/posts/{{ $post->id }}/edit">edit</a>]</p>
+        </div>
+            <h3>Title</h3>
+            <h2 class="title">
+                {{ $post->title }}
+            </h2>
         <div class="content">
             <div class="content__post">
                 <h3>本文</h3>
