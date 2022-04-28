@@ -26,5 +26,18 @@
         <div class="footer">
             <a href="/">戻る</a>
         </div>
+        <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit" onclick="confirm();">delete</button> 
+        </form>
+        <script>
+            function deletePost(){
+                'use strict';
+                if (confirm('記事を削除しますか？')) {
+                    document.getElementById('form_delete').submit();
+                }
+            }
+        </script>
     </body>
 </html>
