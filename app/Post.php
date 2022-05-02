@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-   use SoftDeletes;
+   use SoftDeletes; #PHPでいうトレイト
     
    protected $fillable = [
   'title',

@@ -29,13 +29,13 @@
         <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
             @csrf
             @method('DELETE')
-            <button type="submit" onclick="confirm();">delete</button> 
+            <button type="button" onclick="deletePost();">delete</button> 
         </form>
         <script>
             function deletePost(){
                 'use strict';
                 if (confirm('記事を削除しますか？')) {
-                    document.getElementById('form_delete').submit();
+                    document.getElementById('form_{{ $post->id }}').submit();
                 }
             }
         </script>
