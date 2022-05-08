@@ -1,34 +1,37 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Blog</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
-        <h1>Blog Name</h1>
-        <div class="create">
-            <a href='/posts/create'>create</a>
-        </div>
-        <div class='posts'>
-            @foreach ($posts as $post)
-              <div class='post'>
-                  <h2 class='title'>
-                     <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
-                  </h2>
-                  <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
-                  <p class='body'>{{ $post->body}}</p>
-              </div>
-              <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit">delete</button> 
-              </form>
-            @endforeach
-        </div>
-         <div class='paginate'>
-            {{ $posts->links() }}
-         </div>
-    </body>
-</html>
+@extends('layouts.app')
+
+@section('content')
+<p class='username'>ログイン中：<a href="/user">{{ Auth::user()->name }}</a></p>
+<h1>Blog Name</h1>
+<div class="create">
+    <a href='/posts/create'>create</a>
+</div>
+<div class='posts'>
+    @foreach ($posts as $post)
+      <div class='post'>
+          <h2 class='title'>
+             <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
+          </h2>
+          <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
+          <p class='body'>{{ $post->body}}</p>
+          <small>posted by : {{ $post->user->name }}</small>
+      </div>
+      <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
+          @csrf
+          @method('DELETE')
+          <button type="button" onclick='deletePost();'>delete</button> 
+      </form>
+    @endforeach
+</div>
+<div class='paginate'>
+    {{ $posts->links() }}
+</div>
+<script>
+    function deletePost(){
+        'use strict';
+        if (confirm('記事を削除しますか？')) {
+            document.getElementById('form_{{ $post->id }}').submit();
+        }
+    }
+</script>
+@endsection

@@ -12,14 +12,15 @@ class Post extends Model
    protected $fillable = [
   'title',
   'body',
-  'category_id'
+  'category_id',
+  'user_id'
   //PostControllerのstoreメソッドにて、fill関数で挿入できるようにする
    ];
 
   public function getPaginateByLimit(int $limit_count = 5)
   {
     // updated_atで降順に並べたあと、limitで件数制限をかける
-    return $this::with('category')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    return $this::with('category','user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     //::with(リレーション名)->paginate();はEagerローディングという機能を使う書き方。
     //リレーションによって増えるデータベースアクセスの回数を減らすための機能。
   }
@@ -28,5 +29,10 @@ class Post extends Model
   public function category()
   {
       return $this->belongsTo('App\Category');
+  }
+  
+  public function user()
+  {
+      return $this->belongsTo('App\User');
   }
 }
