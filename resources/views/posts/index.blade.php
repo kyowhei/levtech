@@ -28,7 +28,7 @@
       <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
           @csrf
           @method('DELETE')
-          <button type="button" onclick='deletePost();'>delete</button> 
+          <button type="button" onclick='deletePost({{ $post->id }});'>delete</button> 
       </form>
     @endforeach
 </div>
@@ -36,10 +36,10 @@
     {{ $posts->links() }}
 </div>
 <script>
-    function deletePost(){
+    function deletePost(id){
         'use strict';
         if (confirm('記事を削除しますか？')) {
-            document.getElementById('form_{{ $post->id }}').submit();
+            document.getElementById(`form_${id}`).submit();
         }
     }
 </script>
