@@ -30,6 +30,7 @@ class PostController extends Controller
    public function store(PostRequest $request, Post $post)
    {
     $input = $request['post'];
+    $input += ['user_id' => $request->user()->id];  //リレーションで定義したPostモデルのuserメソッドを呼び出し、関連するUserインスタンスのidプロパティを、連想配列の形でuser_idのキーに持たせている。それをPostインスタンスのプロパティとして保存。
     $post->fill($input)->save();
     return redirect('/posts/' . $post->id);
    }
@@ -42,6 +43,7 @@ class PostController extends Controller
    public function update(PostRequest $request, Post $post)
    {
     $input_post = $request['post'];
+    $input_post += ['user_id' => $request->user()->id];  //リレーションで定義したPostモデルのuserメソッドを呼び出し、関連するUserインスタンスのidプロパティを、連想配列の形でuser_idのキーに持たせている。それをPostインスタンスのプロパティとして保存。
     $post->fill($input_post)->save();
     return redirect('/posts/' . $post->id);
    }
